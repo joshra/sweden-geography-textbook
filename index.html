@@ -181,7 +181,14 @@
         const h = location.hash || "";
         // Support: #/manuscript/xxx.md  or  #manuscript/xxx.md
         const trimmed = h.replace(/^#\/?/, "");
-        return trimmed || DEFAULT_PATH;
+        if (!trimmed) return DEFAULT_PATH;
+        // location.hash 會保留百分比編碼（例如中文檔名會變 %E7...），要先解碼避免之後再 encode 時雙重編碼
+        try {
+          return decodeURIComponent(trimmed);
+        } catch {
+          // 若 hash 不是合法編碼字串，回退到原值（仍可讀英文路徑）
+          return trimmed;
+        }
       }
 
       function setHashToPath(path) {
