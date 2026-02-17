@@ -3,62 +3,325 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>瑞典地理課本（GitHub Pages）</title>
-    <meta name="description" content="瑞典地理課本（台灣讀者向）稿件目錄與章節連結" />
+    <title>瑞典地理課本（網站版）</title>
+    <meta name="description" content="瑞典地理課本（台灣讀者向）網站版：章節可直接在站內閱讀" />
     <style>
       :root { color-scheme: light dark; }
-      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Heiti TC", Arial, sans-serif; margin: 0; line-height: 1.6; }
-      main { max-width: 900px; margin: 0 auto; padding: 28px 18px 48px; }
-      h1 { margin: 0 0 6px; font-size: 28px; }
-      .sub { margin: 0 0 18px; opacity: .8; }
-      .card { border: 1px solid rgba(127,127,127,.35); border-radius: 12px; padding: 14px 16px; margin: 14px 0; }
-      ul { padding-left: 20px; }
-      a { text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-      footer { margin-top: 24px; opacity: .8; font-size: 14px; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Heiti TC", Arial, sans-serif;
+        margin: 0;
+        line-height: 1.65;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+        min-height: 100dvh;
+      }
+
+      aside {
+        border-right: 1px solid rgba(127,127,127,.25);
+        padding: 18px 14px 18px 16px;
+        position: sticky;
+        top: 0;
+        height: 100dvh;
+        overflow: auto;
+      }
+
+      main {
+        min-width: 0;
+        padding: 26px 22px 60px;
+      }
+
+      .brand h1 { margin: 0; font-size: 18px; }
+      .brand .sub { margin: 6px 0 12px; opacity: .8; font-size: 13px; }
+
+      .nav-section { margin-top: 14px; }
+      .nav-section-title { font-weight: 700; font-size: 13px; opacity: .9; margin: 10px 0 8px; }
+      .nav { list-style: none; padding: 0; margin: 0; }
+      .nav li { margin: 2px 0; }
+      .nav a {
+        display: block;
+        padding: 8px 10px;
+        border-radius: 10px;
+        text-decoration: none;
+        border: 1px solid transparent;
+      }
+      .nav a:hover { border-color: rgba(127,127,127,.25); }
+      .nav a[aria-current="page"] { border-color: rgba(127,127,127,.45); background: rgba(127,127,127,.10); }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .topbar .path { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; opacity: .8; font-size: 13px; }
+      .topbar .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+      .btn {
+        border: 1px solid rgba(127,127,127,.35);
+        background: transparent;
+        color: inherit;
+        padding: 6px 10px;
+        border-radius: 10px;
+        font-size: 13px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .btn:hover { border-color: rgba(127,127,127,.55); }
+
+      .content {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      /* Markdown-ish */
+      .md h1 { font-size: 30px; margin: 10px 0 12px; }
+      .md h2 { font-size: 22px; margin: 22px 0 10px; }
+      .md h3 { font-size: 18px; margin: 18px 0 8px; }
+      .md h4 { font-size: 16px; margin: 14px 0 6px; }
+      .md p { margin: 10px 0; }
+      .md blockquote { margin: 12px 0; padding: 8px 12px; border-left: 3px solid rgba(127,127,127,.5); opacity: .95; }
+      .md code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+      .md pre { padding: 12px 14px; overflow: auto; border-radius: 12px; border: 1px solid rgba(127,127,127,.25); }
+      .md img { max-width: 100%; height: auto; }
+
+      .hint { opacity: .8; font-size: 13px; margin-top: 10px; }
+      .error { border: 1px solid rgba(255,0,0,.35); padding: 12px 14px; border-radius: 12px; }
+
+      @media (max-width: 880px) {
+        .layout { grid-template-columns: 1fr; }
+        aside { position: relative; height: auto; }
+      }
     </style>
   </head>
   <body>
-    <main>
-      <h1>瑞典地理課本</h1>
-      <p class="sub">GitHub Pages 快速入口（章節內容目前連到 GitHub 檢視頁）。</p>
+    <div class="layout">
+      <aside>
+        <div class="brand">
+          <h1>瑞典地理課本（網站版）</h1>
+          <div class="sub">點左側章節即可在站內閱讀。</div>
+        </div>
 
-      <div class="card">
-        <strong>主稿入口</strong>
-        <ul>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/%E7%91%9E%E5%85%B8%E5%9C%B0%E7%90%86%E8%AA%B2%E6%9C%AC_%E4%B8%BB%E7%A8%BF.md">瑞典地理課本_主稿.md</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/%E7%91%9E%E5%85%B8%E5%9C%B0%E7%90%86%E8%AA%B2%E6%9C%AC_%E4%B8%BB%E7%A8%BF_%E5%BD%99%E6%95%B4%E7%89%88.md">瑞典地理課本_主稿_彙整版.md</a></li>
-        </ul>
-      </div>
+        <div class="nav-section">
+          <div class="nav-section-title">主稿</div>
+          <ul class="nav" id="nav-main"></ul>
+        </div>
 
-      <div class="card">
-        <strong>章節（逐章）</strong>
-        <ul>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/chapters/01-%E7%91%9E%E5%85%B8%E5%9C%A8%E5%93%AA%E8%A3%A1_%E5%8D%80%E5%9F%9F%E6%A6%82%E5%BF%B5%E8%88%87%E5%B0%BA%E5%BA%A6.md">01-瑞典在哪裡_區域概念與尺度</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/chapters/02-%E8%87%AA%E7%84%B6%E8%88%9E%E5%8F%B0_%E5%9C%B0%E5%BD%A2%E6%B0%B4%E7%B3%BB%E5%86%B0%E6%B2%B3%E5%9C%B0%E5%BD%A2%E8%88%87%E8%B3%87%E6%BA%90_%E9%AA%A8%E6%9E%B6.md">02-自然舞台_地形水系冰河地形與資源（骨架）</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/chapters/03-%E6%B0%A3%E5%80%99%E8%88%87%E7%92%B0%E5%A2%83_%E9%AB%98%E7%B7%AF%E5%BA%A6%E6%B5%B7%E6%B4%8B%E6%80%A7%E6%A3%AE%E6%9E%97%E5%B8%B6%E8%88%87%E6%A5%B5%E5%9C%B0%E8%AE%8A%E9%81%B7_%E9%AA%A8%E6%9E%B6.md">03-氣候與環境_高緯度海洋性森林帶與極地變遷（骨架）</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/chapters/04-%E4%BA%BA%E5%8F%A3%E8%88%87%E6%96%87%E5%8C%96_%E8%AA%9E%E8%A8%80%E6%97%8F%E7%BE%A4%E7%A7%BB%E6%B0%91%E8%88%87%E5%9F%8E%E5%B8%82%E7%94%9F%E6%B4%BB_%E9%AA%A8%E6%9E%B6.md">04-人口與文化_語言族群移民與城市生活（骨架）</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/chapters/05-%E7%B6%93%E6%BF%9F%E8%88%87%E7%94%A2%E6%A5%AD_%E6%9E%97%E6%A5%AD%E8%A3%BD%E9%80%A0%E5%89%B5%E6%96%B0%E6%9C%8D%E5%8B%99%E6%A5%AD%E8%88%87%E8%B2%BF%E6%98%93_%E9%AA%A8%E6%9E%B6.md">05-經濟與產業_林業製造創新服務業與貿易（骨架）</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/chapters/06-%E5%9F%8E%E5%B8%82%E8%88%87%E5%8D%80%E5%9F%9F_%E6%96%AF%E5%BE%B7%E5%93%A5%E7%88%BE%E6%91%A9%E9%83%BD%E5%B8%82%E5%9C%88_%E8%A5%BF%E5%B2%B8%E5%B7%A5%E6%A5%AD%E8%B5%B0%E5%BB%8A_%E5%8D%97%E7%91%9E%E5%85%B8%E8%B7%A8%E5%A2%83_%E9%AA%A8%E6%9E%B6.md">06-城市與區域_斯德哥爾摩都市圈_西岸工業走廊_南瑞典跨境（骨架）</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/chapters/07-%E6%94%BF%E7%AD%96%E8%88%87%E8%AD%B0%E9%A1%8C_%E8%83%BD%E6%BA%90%E8%BD%89%E5%9E%8B%E7%A4%BE%E6%9C%83%E7%A6%8F%E5%88%A9%E6%B0%B8%E7%BA%8C%E8%88%87%E4%B8%8D%E5%B9%B3%E7%AD%89_%E9%AA%A8%E6%9E%B6.md">07-政策與議題_能源轉型社會福利永續與不平等（骨架）</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/chapters/08-%E5%8C%97%E6%AD%90%E6%AF%94%E8%BC%83%E8%88%87%E5%8F%B0%E7%81%A3%E5%B0%8D%E7%85%A7_%E5%90%8C%E8%88%87%E4%B8%8D%E5%90%8C%E5%8F%AF%E5%80%9F%E9%8F%A1%E8%88%87%E9%99%90%E5%88%B6_%E9%AA%A8%E6%9E%B6.md">08-北歐比較與台灣對照_同與不同可借鏡與限制（骨架）</a></li>
-        </ul>
-      </div>
+        <div class="nav-section">
+          <div class="nav-section-title">章節</div>
+          <ul class="nav" id="nav-chapters"></ul>
+        </div>
 
-      <div class="card">
-        <strong>其他</strong>
-        <ul>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/%E7%91%9E%E5%85%B8%E5%9C%B0%E7%90%86%E8%AA%B2%E6%9C%AC_%E5%90%8D%E8%A9%9E%E8%A1%A8.md">名詞表</a></li>
-          <li><a href="https://github.com/joshra/sweden-geography-textbook/blob/main/manuscript/%E7%91%9E%E5%85%B8%E5%9C%B0%E7%90%86%E8%AA%B2%E6%9C%AC_%E5%9C%96%E8%A1%A8%E8%88%87%E8%B3%87%E6%96%99%E9%9C%80%E6%B1%82%E6%B8%85%E5%96%AE.md">圖表與資料需求清單</a></li>
-        </ul>
-      </div>
+        <div class="nav-section">
+          <div class="nav-section-title">其他</div>
+          <ul class="nav" id="nav-other"></ul>
+        </div>
 
-      <footer>
-        <div>提示：要把章節「直接在 Pages 站內渲染」而不是跳 GitHub，我也可以幫你做（會需要加一些 Jekyll 設定或改寫成 docs 站點）。</div>
-        <div>Repo：<code>joshra/sweden-geography-textbook</code></div>
-      </footer>
-    </main>
+        <div class="hint">
+          原始檔案都在 <code>manuscript/</code>。若遇到圖片路徑問題，我可以再幫你調整渲染規則。
+        </div>
+      </aside>
+
+      <main>
+        <div class="content">
+          <div class="topbar">
+            <div class="path" id="current-path">—</div>
+            <div class="actions">
+              <a class="btn" id="btn-open-raw" href="#" target="_blank" rel="noopener noreferrer">開啟原始 Markdown</a>
+              <a class="btn" href="https://github.com/joshra/sweden-geography-textbook" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            </div>
+          </div>
+
+          <article class="md" id="md"></article>
+          <div class="hint" id="footer-hint"></div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Markdown renderer (no build needed) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+    <script>
+      const ROUTES = [
+        { group: "main", label: "瑞典地理課本_主稿", path: "manuscript/瑞典地理課本_主稿.md" },
+        { group: "main", label: "瑞典地理課本_主稿_彙整版", path: "manuscript/瑞典地理課本_主稿_彙整版.md" },
+
+        { group: "chapters", label: "01-瑞典在哪裡｜區域概念與尺度", path: "manuscript/chapters/01-瑞典在哪裡_區域概念與尺度.md" },
+        { group: "chapters", label: "02-自然舞台（骨架）", path: "manuscript/chapters/02-自然舞台_地形水系冰河地形與資源_骨架.md" },
+        { group: "chapters", label: "03-氣候與環境（骨架）", path: "manuscript/chapters/03-氣候與環境_高緯度海洋性森林帶與極地變遷_骨架.md" },
+        { group: "chapters", label: "04-人口與文化（骨架）", path: "manuscript/chapters/04-人口與文化_語言族群移民與城市生活_骨架.md" },
+        { group: "chapters", label: "05-經濟與產業（骨架）", path: "manuscript/chapters/05-經濟與產業_林業製造創新服務業與貿易_骨架.md" },
+        { group: "chapters", label: "06-城市與區域（骨架）", path: "manuscript/chapters/06-城市與區域_斯德哥爾摩都市圈_西岸工業走廊_南瑞典跨境_骨架.md" },
+        { group: "chapters", label: "07-政策與議題（骨架）", path: "manuscript/chapters/07-政策與議題_能源轉型社會福利永續與不平等_骨架.md" },
+        { group: "chapters", label: "08-北歐比較與台灣對照（骨架）", path: "manuscript/chapters/08-北歐比較與台灣對照_同與不同可借鏡與限制_骨架.md" },
+
+        { group: "other", label: "名詞表", path: "manuscript/瑞典地理課本_名詞表.md" },
+        { group: "other", label: "圖表與資料需求清單", path: "manuscript/瑞典地理課本_圖表與資料需求清單.md" },
+      ];
+
+      const DEFAULT_PATH = "manuscript/瑞典地理課本_主稿.md";
+
+      const $ = (sel) => document.querySelector(sel);
+      const navMain = $("#nav-main");
+      const navChapters = $("#nav-chapters");
+      const navOther = $("#nav-other");
+      const mdEl = $("#md");
+      const currentPathEl = $("#current-path");
+      const btnOpenRaw = $("#btn-open-raw");
+      const footerHint = $("#footer-hint");
+
+      function encodePath(path) {
+        // Encode each path segment to support Chinese filenames
+        return path.split("/").map(encodeURIComponent).join("/");
+      }
+
+      function routeFromHash() {
+        const h = location.hash || "";
+        // Support: #/manuscript/xxx.md  or  #manuscript/xxx.md
+        const trimmed = h.replace(/^#\/?/, "");
+        return trimmed || DEFAULT_PATH;
+      }
+
+      function setHashToPath(path) {
+        location.hash = "#/" + path;
+      }
+
+      function isRelativeUrl(href) {
+        return href && !href.startsWith("http://") && !href.startsWith("https://") && !href.startsWith("#") && !href.startsWith("mailto:");
+      }
+
+      function resolveRelative(currentPath, href) {
+        // Resolve relative URLs against the directory of current markdown file
+        const base = new URL(encodePath(currentPath), location.href);
+        return new URL(href, base).pathname.replace(location.pathname.replace(/\/index\.html?$/, "/"), "");
+      }
+
+      function rewriteLinkHref(currentPath, href) {
+        if (!href) return href;
+        if (!isRelativeUrl(href)) return href;
+
+        // If it links to another markdown in repo, keep it inside the reader
+        if (href.endsWith(".md")) {
+          // Normalize to a repo-relative path (best effort)
+          const base = currentPath.split("/").slice(0, -1).join("/") + "/";
+          const normalized = href.startsWith("/") ? href.replace(/^\//, "") : (base + href).replace(/^\.\//, "");
+          return "#/" + normalized;
+        }
+
+        // For images/assets, try to resolve relative URL
+        return href;
+      }
+
+      function rewriteImageSrc(currentPath, src) {
+        if (!src) return src;
+        if (!isRelativeUrl(src)) return src;
+        // Keep as relative to markdown file directory so assets can load
+        // (If your assets are centralized elsewhere, we can tweak this rule.)
+        return src;
+      }
+
+      function installMarkedRenderer(currentPath) {
+        const renderer = new marked.Renderer();
+
+        renderer.link = (token) => {
+          const href = token.href || "";
+          const title = token.title ? ` title="${token.title.replace(/"/g, "&quot;")}"` : "";
+          const text = token.text || href;
+          const newHref = rewriteLinkHref(currentPath, href);
+          const isInternal = typeof newHref === "string" && newHref.startsWith("#/");
+          const attrs = isInternal ? "" : ` target="_blank" rel="noopener noreferrer"`;
+          return `<a href="${newHref}"${title}${attrs}>${text}</a>`;
+        };
+
+        renderer.image = (token) => {
+          const src = token.href || "";
+          const alt = (token.text || "").replace(/"/g, "&quot;");
+          const title = token.title ? ` title="${token.title.replace(/"/g, "&quot;")}"` : "";
+          const newSrc = rewriteImageSrc(currentPath, src);
+          return `<img src="${newSrc}" alt="${alt}"${title} />`;
+        };
+
+        marked.setOptions({
+          gfm: true,
+          breaks: false,
+        });
+
+        marked.use({ renderer });
+      }
+
+      async function loadMarkdown(path) {
+        const safePath = path || DEFAULT_PATH;
+        const url = encodePath(safePath);
+
+        currentPathEl.textContent = safePath;
+        btnOpenRaw.href = url;
+        footerHint.textContent = "";
+
+        installMarkedRenderer(safePath);
+
+        mdEl.innerHTML = "<p class='hint'>載入中…</p>";
+        try {
+          const res = await fetch(url, { cache: "no-cache" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const text = await res.text();
+          const rawHtml = marked.parse(text);
+          const clean = DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true } });
+          mdEl.innerHTML = clean;
+
+          // If there are hash-based internal links, keep navigation smooth.
+          mdEl.querySelectorAll('a[href^="#/"]').forEach((a) => {
+            a.addEventListener("click", (e) => {
+              // Allow normal hash navigation; just ensure it routes.
+              const href = a.getAttribute("href");
+              if (href) {
+                e.preventDefault();
+                location.hash = href;
+              }
+            });
+          });
+        } catch (err) {
+          mdEl.innerHTML = `<div class="error"><strong>載入失敗</strong><div class="hint">找不到檔案：<code>${safePath}</code><br/>錯誤：<code>${String(err)}</code></div></div>`;
+          footerHint.textContent = "若這是新檔案，請確認它已推到 main，且檔名/路徑正確。";
+        }
+      }
+
+      function buildNav() {
+        function addItem(ul, item) {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = "#/" + item.path;
+          a.textContent = item.label;
+          a.dataset.path = item.path;
+          li.appendChild(a);
+          ul.appendChild(li);
+        }
+
+        ROUTES.filter(r => r.group === "main").forEach(r => addItem(navMain, r));
+        ROUTES.filter(r => r.group === "chapters").forEach(r => addItem(navChapters, r));
+        ROUTES.filter(r => r.group === "other").forEach(r => addItem(navOther, r));
+      }
+
+      function highlightActive(path) {
+        document.querySelectorAll("aside a[data-path]").forEach((a) => {
+          const isActive = a.dataset.path === path;
+          if (isActive) a.setAttribute("aria-current", "page");
+          else a.removeAttribute("aria-current");
+        });
+      }
+
+      function onRouteChange() {
+        const path = routeFromHash();
+        highlightActive(path);
+        loadMarkdown(path);
+      }
+
+      buildNav();
+      window.addEventListener("hashchange", onRouteChange);
+      if (!location.hash) setHashToPath(DEFAULT_PATH);
+      onRouteChange();
+    </script>
   </body>
 </html>
 
