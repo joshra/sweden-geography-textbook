@@ -1,0 +1,28 @@
+slug: sweden-geography-textbook
+title_zh: 瑞典地理課本
+audience:
+  region: Taiwan
+  level: 高中／大學通識入門
+language:
+  primary: zh-Hant
+perspective:
+  primary: nordic
+  focus: sweden
+  taiwan_comparison_role: bridge_not_judgement
+content_scope:
+  core_country: Sweden
+  include_nordic_comparisons: true
+authoring_defaults:
+  avoid_stale_numbers: true
+  require_year_for_data: true
+manuscript:
+  dir: manuscript
+  entry: 瑞典地理課本_主稿.md
+  chapters_dir: chapters
+  glossary: 瑞典地理課本_名詞表.md
+  data_needs: 瑞典地理課本_圖表與資料需求清單.md
+publishing:
+  enabled: false
+  recommended_stack: mkdocs-material
+  docs_dir: manuscript
+  assets_dir: manuscript/assets
